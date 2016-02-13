@@ -5,5 +5,5 @@ class Place < ActiveRecord::Base
   validates_presence_of :website
   validates_presence_of :user_id
 
-  belons_to :user
+  belongs_to :user
 end
