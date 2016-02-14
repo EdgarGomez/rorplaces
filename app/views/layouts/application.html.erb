@@ -2,11 +2,11 @@
 <html>
 <head>
   <title>Rorplaces</title>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEECJw2onFnSfAcBZ6_FQq7h0eoFXUQZ8&callback=initMap"
+    type="text/javascript"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHdQfb2kyPUXvdUd_-5clbU6Bwhi1XuwM&callback=initMap"
-    type="text/javascript"></script>
 </head>
 <body>
 
@@ -22,6 +22,23 @@
 <div class="container">
   <%= yield %>
 </div>
+
+<script type="text/javascript">
+
+  var map;
+  var myCenter = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
+
+  function initMap(){
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+      center: myCenter,
+      zoom: 13
+    });
+    var marker = new google.maps.Marker({
+      position: myCenter,
+      map: map,
+    });
+  }
+</script>
 
 </body>
 </html>
