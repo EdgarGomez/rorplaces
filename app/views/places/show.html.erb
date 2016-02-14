@@ -23,6 +23,25 @@
 
   <div class="col-md-9">
     <h3>Reviews by People</h3>
-
+    <%= render 'reviews/form' %>
+    <h5>All reviews</h5>
+    <%= render @reviews %>
   </div>
 </div>
+
+<script type="text/javascript">
+
+  var map;
+  var myCenter = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
+
+  function initMap(){
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+      center: myCenter,
+      zoom: 13
+    });
+    var marker = new google.maps.Marker({
+      position: myCenter,
+      map: map,
+    });
+  }
+</script>
